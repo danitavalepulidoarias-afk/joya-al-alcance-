@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Crear Pedido</title>
+<body>
+    <div class="navbar">
+<div>💎 Joya al alcance de un clic</div>
+
+<div>
+<a href="inicio.html">🏠 Inicio</a>
+<a href="catalogo.html">💎 Catálogo</a>
+<a href="crear.html">🛒 Crear pedido</a>
+<a href="carrito.html">🛍️ Carrito</a>
+<a href="seguimiento.html">📦 Seguimiento</a>
+<a href="login.html">👤 Login</a>
+</div>
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0d0d0d;
+color:white;
+}
+
+/* HEADER */
+.header{
+background:black;
+color:gold;
+padding:15px;
+text-align:center;
+font-size:20px;
+border-bottom:1px solid gold;
+}
+
+/* CONTENEDOR */
+.container{
+padding:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+/* CARD */
+.card{
+background:#1a1a1a;
+padding:15px;
+border-radius:15px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+box-shadow:0 0 10px gold;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* SELECCIÓN */
+.seleccionado{
+border:2px solid gold;
+}
+
+/* RESUMEN */
+.resumen{
+margin-top:20px;
+background:#111;
+padding:20px;
+border-radius:15px;
+display:none;
+}
+
+.precio{
+color:gold;
+font-size:18px;
+}
+
+/* BOTÓN */
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:gold;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">💎 Crear Pedido</div>
+
+<div class="container">
+
+<h3>Selecciona tu joya</h3>
+
+<div class="grid" id="productos"></div>
+
+<!-- RESUMEN -->
+<div class="resumen" id="resumen">
+<h3>🛒 Resumen del pedido</h3>
+<img id="img" style="width:100px;border-radius:10px;">
+<h4 id="nombre"></h4>
+<div class="precio" id="precio"></div>
+
+<button onclick="confirmar()">💳 Confirmar pedido</button>
+</div>
+
+</div>
+
+<script>
+
+// 🔥 PRODUCTOS (MISMO ESTILO DEL INICIO)
+let productos = [
+{nombre:"Anillo de lujo", precio:80000, img:"https://images.unsplash.com/photo-1602751584552-8ba73aad10e1"},
+{nombre:"Collar elegante", precio:95000, img:"https://img.nihaojewelry.com/fit-in/800x800/filters:quality(80)/filters:format(webp)/product/2025/7/30/1950477394246766592/New-Luxury-Floral-Necklace-And-Earring-Set-Elegant-Style-Wedding-Jewelry-Alloy-And-Rhinestone-Accessories-For-Women-0.jp"},
+{nombre:"Pulsera moderna", precio:60000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1jCUpqVzS14Ca3JrliT2KGMnIZSjdNCU6jg&s"},
+{nombre:"Anillo diamante", precio:120000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsThJ4dcUcOSu4Zr0_MU9RM0YfeUztrpzQ4g&s"},
+{nombre:"Collar oro rosa", precio:110000, img:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a"},
+{nombre:"Pulsera fina", precio:70000, img:"https://images.unsplash.com/photo-1608042314453-ae338d80c427"},
+{nombre:"Anillo moderno", precio:85000, img:"https://images.unsplash.com/photo-1599643477877-530eb83abc8e"},
+{nombre:"Collar brillante", precio:98000, img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338"}
+];
+
+let seleccionado = null;
+
+// mostrar productos
+let html="";
+productos.forEach((p,i)=>{
+html+=`
+<div class="card" onclick="seleccionar(${i}, this)">
+<img src="${p.img}">
+<h4>${p.nombre}</h4>
+<div class="precio">$${p.precio.toLocaleString()}</div>
+</div>
+`;
+});
+document.getElementById("productos").innerHTML=html;
+
+// seleccionar producto
+function seleccionar(i, elemento){
+
+seleccionado = productos[i];
+
+// resaltar
+document.querySelectorAll(".card").forEach(c=>{
+c.classList.remove("seleccionado");
+});
+elemento.classList.add("seleccionado");
+
+// mostrar resumen
+document.getElementById("resumen").style.display="block";
+document.getElementById("img").src = seleccionado.img;
+document.getElementById("nombre").innerText = seleccionado.nombre;
+document.getElementById("precio").innerText = "$" + seleccionado.precio.toLocaleString();
+
+}
+
+// confirmar pedido
+function confirmar(){
+
+if(!seleccionado){
+alert("Selecciona un producto ⚠️");
+return;
+}
+
+// generar número
+let numero = Math.floor(Math.random()*100000);
+
+// crear pedido
+let pedido = {
+producto: seleccionado,
+estado: 0
+};
+
+// guardar
+localStorage.setItem(numero, JSON.stringify(pedido));
+
+// historial
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+historial.push(numero);
+localStorage.setItem("historial", JSON.stringify(historial));
+
+alert("✅ Pedido creado\nNúmero: " + numero);
+
+// redirigir
+window.location.href = "seguimiento.html?pedido=" + numero;
+
+}
+
+</script>
+
+</body>
+</html>

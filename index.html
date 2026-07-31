@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Joya al alcance de un clic</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#0B0B0B;
+            color:white;
+        }
+
+        /* NAVBAR */
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 40px;
+            background:black;
+            border-bottom:1px solid gold;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .navbar a{
+            color:gold;
+            text-decoration:none;
+        }
+
+        .navbar nav a{
+            color:white;
+            margin-left:20px;
+            text-decoration:none;
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        .navbar nav a:hover{
+            color:gold;
+        }
+
+        /* HERO */
+
+        .hero{
+            text-align:center;
+            padding:70px 20px;
+            background:
+            linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+            url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1400&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+        }
+
+        .hero h1{
+            color:gold;
+            font-size:55px;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            color:#ddd;
+            font-size:18px;
+        }
+
+        /* CATALOGO */
+
+        .catalogo{
+            padding:50px 40px;
+            text-align:center;
+        }
+
+        .catalogo h1{
+            color:gold;
+            margin-bottom:30px;
+            font-size:40px;
+        }
+
+        /* FILTROS */
+
+        .filtros{
+            margin-bottom:30px;
+        }
+
+        .filtros button{
+            background:gold;
+            border:none;
+            padding:12px 20px;
+            margin:5px;
+            cursor:pointer;
+            border-radius:10px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .filtros button:hover{
+            transform:scale(1.05);
+            box-shadow:0 0 15px gold;
+        }
+
+        /* GRID */
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        /* CARD */
+
+        .item{
+            background:#161616;
+            border:1px solid #222;
+            padding:15px;
+            border-radius:20px;
+            text-align:center;
+            transition:0.4s;
+        }
+
+        .item:hover{
+            transform:translateY(-10px);
+            box-shadow:0 0 20px rgba(212,175,55,0.4);
+        }
+
+        .item img{
+            width:100%;
+            height:250px;
+            object-fit:cover;
+            border-radius:15px;
+            margin-bottom:15px;
+        }
+
+        .item h3{
+            margin-bottom:10px;
+        }
+
+        /* BOTONES */
+
+        .comprar{
+            background:gold;
+            border:none;
+            padding:10px;
+            margin-top:10px;
+            cursor:pointer;
+            width:100%;
+            border-radius:10px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .favorito{
+            background:#ff4d6d;
+            border:none;
+            padding:10px;
+            margin-top:10px;
+            cursor:pointer;
+            width:100%;
+            border-radius:10px;
+            color:white;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .comprar:hover,
+        .favorito:hover{
+            transform:scale(1.05);
+        }
+
+        /* FOOTER */
+
+        footer{
+            text-align:center;
+            padding:30px;
+            margin-top:50px;
+            background:#111;
+            color:#888;
+            border-top:1px solid #222;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <a  href="./Catalogo.html">💎 Joya al alcance de un clic</a>
+
+        <nav>
+            <a href="inicio.html">🏠 Inicio</a>
+            <a href="catalogo.html">💎 Catálogo</a>
+            <a href="favoritos.html">❤️ Favoritos</a>
+            <a href="carrito.html">🛒 Carrito</a>
+            <a href="seguimiento.html">📦 Seguimiento</a>
+            <a href="./pages/login.html">👤 Login</a>
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>Elegancia que brilla contigo ✨</h1>
+
+        <p>
+            Descubre joyas exclusivas diseñadas para resaltar tu estilo
+        </p>
+
+    </section>
+
+    <!-- CATALOGO -->
+
+    <section class="catalogo">
+
+        <h1>Catálogo de Joyas</h1>
+
+        <!-- FILTROS -->
+
+        <div class="filtros">
+
+            <button onclick="filtrar('all')">Todos</button>
+            <button onclick="filtrar('Anillo')">Anillos</button>
+            <button onclick="filtrar('Collar')">Collares</button>
+            <button onclick="filtrar('Pulsera')">Pulseras</button>
+
+        </div>
+
+        <!-- GRID -->
+
+        <div class="grid">
+
+            <!-- 1 -->
+            <div class="item Anillo">
+                <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1200&auto=format&fit=crop">
+                <h3>Anillo Diamante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 2 -->
+            <div class="item Anillo">
+                <img src="https://images.unsplash.com/photo-1627293501081-a1f856f447b4?q=80&w=1200&auto=format&fit=crop">
+                <h3>Anillo Elegante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 3 -->
+            <div class="item Anillo">
+                <img src="https://images.pexels.com/photos/10361481/pexels-photo-10361481.jpeg">
+                <h3>Anillo Moderno</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 4 -->
+            <div class="item Collar">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop">
+                <h3>Collar de lujo</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 5 -->
+            <div class="item Collar">
+                <img src="https://media.istockphoto.com/id/172168404/photo/diamonds-galore.jpg?s=1024x1024&w=is&k=20&c=EhGI4DvEP1lhDR769jKTJ9qTdRHI0tTfo4b7BI4qlmw=">
+                <h3>Collar brillante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 6 -->
+            <div class="item Pulsera">
+                <img src="https://images.pexels.com/photos/30206392/pexels-photo-30206392.jpeg">
+                <h3>Pulsera moderna</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 7 -->
+            <div class="item Pulsera">
+                <img src="https://images.pexels.com/photos/12168880/pexels-photo-12168880.jpeg">
+                <h3>Pulsera fina</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 8 -->
+            <div class="item Pulsera">
+                <img src="https://plus.unsplash.com/premium_photo-1692392182108-e9c8a36a80d9?q=80&w=1200&auto=format&fit=crop">
+                <h3>Pulsera dorada</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 9 -->
+            <div class="item Collar">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop">
+                <h3>Collar oro rosa</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 10 -->
+            <div class="item Anillo">
+                <img src="https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=1200&auto=format&fit=crop">
+                <h3>Anillo premium</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 11 -->
+            <div class="item Collar">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=1200&auto=format&fit=crop">
+                <h3>Collar exclusivo</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 12 -->
+            <div class="item Pulsera">
+                <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop">
+                <h3>Pulsera elegante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 13 -->
+            <div class="item Anillo">
+                <img src="https://cdn-media.glamira.com/media/product/newgeneration/view/1/sku/classic-spring/alloycolour/yellow/width/w4/profile/prA.jpg">
+                <h3>Anillo clásico</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 14 -->
+            <div class="item Collar">
+                <img src="https://damiancolombo.com/assets/images/productos/version/CLPG0102BIG1.webp">
+                <h3>Collar fino</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 15 -->
+            <div class="item Pulsera">
+                <img src="https://img.kwcdn.com/product/fancy/72f822ec-d5c4-48ee-aec5-3ee5c060f9eb.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp">
+                <h3>Pulsera diamante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 16 -->
+            <div class="item Anillo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPuDJzqNvGB8PqPryvHX57UYtbMTyxt7ouA&s">
+                <h3>Anillo brillante</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 17 -->
+            <div class="item Collar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU6PwikRAImQfJpm6HjIX2mov3A9FAYKXpPw&s">
+                <h3>Collar moderno</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 18 -->
+            <div class="item Pulsera">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0uDvm0R_qnhptg2jNntUHwbJY4f4vTmSkWg&s">
+                <h3>Pulsera exclusiva</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 19 -->
+            <div class="item Anillo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDlZxKTKxv2xbXSnp5bOwgUDBYVM1NhWehYg&s">
+                <h3>Anillo de lujo</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+            <!-- 20 -->
+            <div class="item Collar">
+                <img src="https://http2.mlstatic.com/D_Q_NP_2X_936742-MCO108710614969_032026-P.webp">
+                <h3>Collar premium</h3>
+                <button class="comprar">🛒 Comprar</button>
+                <button class="favorito">❤️ Favorito</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 - La joya al alcance de un clic 💎
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function filtrar(tipo){
+
+            let items =
+            document.querySelectorAll(".item");
+
+            items.forEach(item=>{
+
+                if(tipo === "all"){
+
+                    item.style.display = "block";
+
+                }
+
+                else{
+
+                    if(item.classList.contains(tipo)){
+
+                        item.style.display = "block";
+
+                    }
+
+                    else{
+
+                        item.style.display = "none";
+
+                    }
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

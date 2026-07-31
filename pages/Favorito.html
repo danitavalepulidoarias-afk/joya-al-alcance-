@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Favoritos</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#0B0B0B;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:black;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid #D4AF37;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .logo{
+      color:#D4AF37;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      transition:0.3s;
+      font-size:16px;
+    }
+
+    .nav-links a:hover{
+      color:#D4AF37;
+    }
+
+    /* TITULO */
+
+    .title{
+      text-align:center;
+      padding:50px 20px 30px;
+    }
+
+    .title h1{
+      color:#D4AF37;
+      font-size:50px;
+      margin-bottom:10px;
+    }
+
+    .title p{
+      color:#ccc;
+      font-size:18px;
+    }
+
+    /* GALERIA */
+
+    .galeria{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      padding:0 40px 40px;
+    }
+
+    .galeria img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:20px;
+      transition:0.4s;
+      border:2px solid #1f1f1f;
+    }
+
+    .galeria img:hover{
+      transform:scale(1.03);
+      box-shadow:0 0 20px rgba(212,175,55,0.5);
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      padding:40px;
+    }
+
+    /* CARD */
+
+    .card{
+      background:#161616;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      border:1px solid #222;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 25px rgba(212,175,55,0.4);
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+      text-align:center;
+    }
+
+    .card h3{
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .precio{
+      color:#D4AF37;
+      font-size:22px;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    /* BOTONES */
+
+    .btn-container{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+    }
+
+    button{
+      padding:12px 18px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .cart{
+      background:#D4AF37;
+      color:black;
+    }
+
+    .delete{
+      background:#ff4d6d;
+      color:white;
+    }
+
+    button:hover{
+      transform:scale(1.08);
+    }
+
+    /* VACIO */
+
+    .empty{
+      text-align:center;
+      padding:100px 20px;
+      color:#888;
+      font-size:22px;
+    }
+
+    .empty h2{
+      margin-bottom:15px;
+      color:#D4AF37;
+    }
+
+    /* FOOTER */
+
+    footer{
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+      background:#111;
+      color:#888;
+      border-top:1px solid #222;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      💎 Joya al alcance de un clic
+    </div>
+
+    <div class="nav-links">
+      <a href="inicio.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="favoritos.html">Favoritos</a>
+      <a href="carrito.html">🛒</a>
+    </div>
+
+  </div>
+
+  <!-- TITULO -->
+
+  <div class="title">
+
+    <h1>❤️ Tus favoritos</h1>
+
+    <p>
+      Guarda las joyas que más te gusten
+    </p>
+
+  </div>
+
+  <!-- GALERIA -->
+
+  <div class="galeria">
+
+    <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop">
+
+    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop">
+
+    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop">
+
+    <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1200&auto=format&fit=crop">
+
+  </div>
+
+  <!-- FAVORITOS -->
+
+  <div class="grid" id="favoritos"></div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 - La joya al alcance de un clic 💎
+  </footer>
+
+<script>
+
+/* OBTENER FAVORITOS */
+
+let favoritos =
+JSON.parse(localStorage.getItem("fav")) || [];
+
+let contenedor =
+document.getElementById("favoritos");
+
+/* SI NO HAY FAVORITOS */
+
+if(favoritos.length === 0){
+
+contenedor.innerHTML = `
+
+<div class="empty">
+
+<h2>No tienes favoritos ❤️</h2>
+
+<p>Explora el catálogo y agrega joyas increíbles</p>
+
+</div>
+
+`;
+
+}
+
+/* MOSTRAR FAVORITOS */
+
+else{
+
+let html = "";
+
+favoritos.forEach((p,index)=>{
+
+html += `
+
+<div class="card">
+
+<img src="${p.img}">
+
+<div class="card-content">
+
+<h3>${p.nombre}</h3>
+
+<div class="precio">
+$${p.precio.toLocaleString()}
+</div>
+
+<div class="btn-container">
+
+<button class="cart"
+onclick='agregarCarrito(${JSON.stringify(p)})'>
+🛒 Comprar
+</button>
+
+<button class="delete"
+onclick='eliminar(${index})'>
+❌
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+contenedor.innerHTML = html;
+
+}
+
+/* AGREGAR AL CARRITO */
+
+function agregarCarrito(p){
+
+let carrito =
+JSON.parse(localStorage.getItem("carrito")) || [];
+
+carrito.push(p);
+
+localStorage.setItem(
+"carrito",
+JSON.stringify(carrito)
+);
+
+alert("🛒 Producto agregado al carrito");
+
+}
+
+/* ELIMINAR FAVORITO */
+
+function eliminar(index){
+
+favoritos.splice(index,1);
+
+localStorage.setItem(
+"fav",
+JSON.stringify(favoritos)
+);
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>

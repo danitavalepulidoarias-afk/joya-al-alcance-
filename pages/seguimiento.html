@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Seguimiento PRO</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0d0d0d;
+color:white;
+}
+
+.header{
+background:black;
+padding:15px;
+color:gold;
+text-align:center;
+font-size:20px;
+border-bottom:1px solid gold;
+}
+
+.container{ padding:15px; }
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#222;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:gold;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.card{
+background:#1a1a1a;
+border-radius:15px;
+padding:20px;
+margin-top:15px;
+display:none;
+}
+
+.producto{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.producto img{
+width:80px;
+border-radius:10px;
+border:1px solid gold;
+}
+
+.nombre{
+color:gold;
+font-size:18px;
+}
+
+#mapa{
+height:220px;
+margin-top:20px;
+border-radius:10px;
+}
+
+.timeline{ margin-top:20px; }
+
+.item{
+display:flex;
+margin-bottom:10px;
+opacity:0.4;
+}
+
+.item.activo{ opacity:1; }
+
+.circulo{
+width:12px;
+height:12px;
+background:gray;
+border-radius:50%;
+margin-right:10px;
+margin-top:5px;
+}
+
+.activo .circulo{
+background:gold;
+}
+
+.historial{
+margin-top:20px;
+background:#111;
+padding:15px;
+border-radius:10px;
+}
+
+.historial div{
+padding:6px;
+border-bottom:1px solid #333;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">💎 Seguimiento de pedidos</div>
+
+<div class="container">
+
+<input type="text" id="numero" placeholder="Número de pedido">
+
+<button onclick="crear()">Crear pedido</button>
+<button onclick="buscar()">Buscar pedido</button>
+
+<div class="card" id="card">
+
+<div class="producto">
+<img id="img">
+<div>
+<div class="nombre" id="nombre"></div>
+<div id="estado"></div>
+</div>
+</div>
+
+<div id="mapa"></div>
+
+<div class="timeline" id="timeline"></div>
+
+</div>
+
+<div class="historial" id="historial">
+<h3>📦 Historial</h3>
+</div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+let estados = [
+"Confirmado 💎",
+"Preparando 🛠",
+"En camino 🚚",
+"Entregado ✨"
+];
+
+// coordenadas simuladas (Bogotá)
+let puntosRuta = [
+[4.6097, -74.0817], // origen
+[4.65, -74.1],
+[4.7, -74.12],
+[4.75, -74.15] // destino
+];
+
+let mapa, marcador, rutaLinea, marcadorDestino;
+
+// CREAR PEDIDO
+function crear(){
+let numero = Math.floor(Math.random()*100000);
+
+let productos = [
+{nombre:"Anillo", img:"https://images.unsplash.com/photo-1602751584552-8ba73aad10e1"},
+{nombre:"Collar", img:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f"},
+{nombre:"Pulsera", img:"https://images.unsplash.com/photo-1617038220319-276d3cfab638"}
+];
+
+let producto = productos[Math.floor(Math.random()*3)];
+let estado = Math.floor(Math.random()*4);
+
+let pedido = {producto, estado};
+
+localStorage.setItem(numero, JSON.stringify(pedido));
+
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+historial.push(numero);
+localStorage.setItem("historial", JSON.stringify(historial));
+
+alert("Pedido: " + numero);
+mostrarHistorial();
+}
+
+// MAPA
+function iniciarMapa(estado){
+
+if(!mapa){
+
+mapa = L.map('mapa').setView(puntosRuta[0], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'© OpenStreetMap'
+}).addTo(mapa);
+
+// ruta
+rutaLinea = L.polyline(puntosRuta, {
+color: "gold",
+weight: 4
+}).addTo(mapa);
+
+// marcador origen
+L.marker(puntosRuta[0]).addTo(mapa).bindPopup("Origen");
+
+// marcador destino
+marcadorDestino = L.marker(puntosRuta[3]).addTo(mapa).bindPopup("Destino");
+
+// marcador móvil
+marcador = L.marker(puntosRuta[0]).addTo(mapa);
+
+}
+
+// mover
+marcador.setLatLng(puntosRuta[estado]);
+mapa.setView(puntosRuta[estado], 13);
+
+}
+
+// BUSCAR
+function buscar(){
+
+let numero = document.getElementById("numero").value;
+let data = localStorage.getItem(numero);
+
+if(!data){
+alert("No encontrado ❌");
+return;
+}
+
+data = JSON.parse(data);
+
+document.getElementById("card").style.display="block";
+
+document.getElementById("nombre").innerText = data.producto.nombre;
+document.getElementById("img").src = data.producto.img;
+document.getElementById("estado").innerText = estados[data.estado];
+
+// timeline
+let html="";
+for(let i=0;i<estados.length;i++){
+let activo = i <= data.estado ? "activo" : "";
+html += `
+<div class="item ${activo}">
+<div class="circulo"></div>
+<div>${estados[i]}</div>
+</div>`;
+}
+document.getElementById("timeline").innerHTML = html;
+
+// mapa
+iniciarMapa(data.estado);
+
+}
+
+// HISTORIAL
+function mostrarHistorial(){
+let lista = JSON.parse(localStorage.getItem("historial")) || [];
+let html = "<h3>📦 Historial</h3>";
+
+lista.slice().reverse().forEach(num=>{
+html += `<div onclick="autoBuscar(${num})">Pedido #${num}</div>`;
+});
+
+document.getElementById("historial").innerHTML = html;
+}
+
+function autoBuscar(num){
+document.getElementById("numero").value = num;
+buscar();
+}
+
+mostrarHistorial();
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Seguimiento PRO</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<body>
+<div class="navbar">
+<div>💎 Joya al alcance de un clic</div>
+
+<div>
+<a href="inicio.html">🏠 Inicio</a>
+<a href="catalogo.html">💎 Catálogo</a>
+<a href="crear.html">🛒 Crear pedido</a>
+<a href="carrito.html">🛍️ Carrito</a>
+<a href="seguimiento.html">📦 Seguimiento</a>
+<a href="login.html">👤 Login</a>
+</div>
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0d0d0d;
+color:white;
+}
+
+.header{
+background:black;
+padding:15px;
+color:gold;
+text-align:center;
+font-size:20px;
+border-bottom:1px solid gold;
+}
+
+.container{ padding:15px; }
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#222;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:gold;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.card{
+background:#1a1a1a;
+border-radius:15px;
+padding:20px;
+margin-top:15px;
+display:none;
+}
+
+.producto{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.producto img{
+width:80px;
+border-radius:10px;
+border:1px solid gold;
+}
+
+.nombre{
+color:gold;
+font-size:18px;
+}
+
+#mapa{
+height:220px;
+margin-top:20px;
+border-radius:10px;
+}
+
+.timeline{ margin-top:20px; }
+
+.item{
+display:flex;
+margin-bottom:10px;
+opacity:0.4;
+}
+
+.item.activo{ opacity:1; }
+
+.circulo{
+width:12px;
+height:12px;
+background:gray;
+border-radius:50%;
+margin-right:10px;
+margin-top:5px;
+}
+
+.activo .circulo{
+background:gold;
+}
+
+.historial{
+margin-top:20px;
+background:#111;
+padding:15px;
+border-radius:10px;
+}
+
+.historial div{
+padding:6px;
+border-bottom:1px solid #333;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">💎 Seguimiento de pedidos</div>
+
+<div class="container">
+
+<input type="text" id="numero" placeholder="Número de pedido">
+
+<button onclick="crear()">Crear pedido</button>
+<button onclick="buscar()">Buscar pedido</button>
+
+<div class="card" id="card">
+
+<div class="producto">
+<img id="img">
+<div>
+<div class="nombre" id="nombre"></div>
+<div id="estado"></div>
+</div>
+</div>
+
+<div id="mapa"></div>
+
+<div class="timeline" id="timeline"></div>
+
+</div>
+
+<div class="historial" id="historial">
+<h3>📦 Historial</h3>
+</div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+let estado = [
+"Confirmado 💎",
+"Preparando 🛠",
+"En camino 🚚",
+"Entregado ✨"
+];
+
+// coordenadas simuladas (Bogotá)
+let puntoRuta = [
+[4.6097, -74.0817], // origen
+[4.65, -74.1],
+[4.7, -74.12],
+[4.75, -74.15] // destino
+];
+
+let Mapa, Marcador, RutaLinea, MarcadorDestino;
+
+// CREAR PEDIDO
+function crear(){
+let numero = Math.floor(Math.random()*100000);
+
+let productos = [
+{nombre:"Anillo", img:"https://images.unsplash.com/photo-1602751584552-8ba73aad10e1"},
+{nombre:"Collar", img:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f"},
+{nombre:"Pulsera", img:"https://images.unsplash.com/photo-1617038220319-276d3cfab638"}
+];
+
+let producto = productos[Math.floor(Math.random()*3)];
+let estado = Math.floor(Math.random()*4);
+
+let pedido = {producto, estado};
+
+localStorage.setItem(numero, JSON.stringify(pedido));
+
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+historial.push(numero);
+localStorage.setItem("historial", JSON.stringify(historial));
+
+alert("Pedido: " + numero);
+mostrarHistorial();
+}
+
+// MAPA
+function iniciarMapa(estado){
+
+if(!mapa){
+
+mapa = L.map('mapa').setView(puntosRuta[0], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+attribution:'© OpenStreetMap'
+}).addTo(mapa);
+
+// ruta
+rutaLinea = L.polyline(puntosRuta, {
+color: "gold",
+weight: 4
+}).addTo(mapa);
+
+// marcador origen
+L.marker(puntosRuta[0]).addTo(mapa).bindPopup("Origen");
+
+// marcador destino
+marcadorDestino = L.marker(puntosRuta[3]).addTo(mapa).bindPopup("Destino");
+
+// marcador móvil
+marcador = L.marker(puntosRuta[0]).addTo(mapa);
+
+}
+
+// mover
+marcador.setLatLng(puntosRuta[estado]);
+mapa.setView(puntosRuta[estado], 13);
+
+}
+
+// BUSCAR
+function buscar(){
+
+let numero = document.getElementById("numero").value;
+let data = localStorage.getItem(numero);
+
+if(!data){
+alert("No encontrado ❌");
+return;
+}
+
+data = JSON.parse(data);
+
+document.getElementById("card").style.display="block";
+
+document.getElementById("nombre").innerText = data.producto.nombre;
+document.getElementById("img").src = data.producto.img;
+document.getElementById("estado").innerText = estados[data.estado];
+
+// timeline
+let html="";
+for(let i=0;i<estados.length;i++){
+let activo = i <= data.estado ? "activo" : "";
+html += `
+<div class="item ${activo}">
+<div class="circulo"></div>
+<div>${estados[i]}</div>
+</div>`;
+}
+document.getElementById("timeline").innerHTML = html;
+
+// mapa
+iniciarMapa(data.estado);
+
+}
+
+// HISTORIAL
+function mostrarHistorial(){
+let lista = JSON.parse(localStorage.getItem("historial")) || [];
+let html = "<h3>📦 Historial</h3>";
+
+lista.slice().reverse().forEach(num=>{
+html += `<div onclick="autoBuscar(${num})">Pedido #${num}</div>`;
+});
+
+document.getElementById("historial").innerHTML = html;
+}
+
+function autoBuscar(num){
+document.getElementById("numero").value = num;
+buscar();
+}
+
+mostrarHistorial();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+*{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background: #0B0B0B;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      width: 100%;
+      background: #111;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #D4AF37;
+    }
+
+    .logo{
+      font-size: 24px;
+      font-weight: bold;
+      color: #D4AF37;
+    }
+
+    .nav-links a{
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover{
+      color: #D4AF37;
+    }
+
+    /* LOGIN */
+
+    .container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .login-container{
+      background: #1A1A1A;
+      padding: 40px;
+      width: 350px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .login-container img.logo-img{
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .login-container h2{
+      margin-bottom: 30px;
+      color: #D4AF37;
+    }
+
+    .input-group{
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label{
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .input-box{
+      display: flex;
+      align-items: center;
+      background: #2A2A2A;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .input-box img{
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .input-box input{
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      width: 100%;
+    }
+
+    /* BOTONES */
+
+    .btn{
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #D4AF37;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .btn:hover{
+      transform: scale(1.05);
+      background: #f1c94c;
+    }
+
+    .forgot{
+      display: block;
+      margin-top: 15px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot:hover{
+      color: #D4AF37;
+    }
+
+    .social-text{
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .social-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      background: #2A2A2A;
+      color: white;
+    }
+
+    .social-btn img{
+      width: 20px;
+    }

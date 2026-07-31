@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Joya al alcance de un clic</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#0B0B0B;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      width:100%;
+      background:rgba(0,0,0,0.9);
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid #D4AF37;
+    }
+
+    .logo{
+      color:#D4AF37;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:0.3s;
+      font-size:16px;
+    }
+
+    .nav-links a:hover{
+      color:#D4AF37;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:80vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      color:#D4AF37;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      color:#ddd;
+      margin-bottom:30px;
+    }
+
+    .hero-btn{
+      padding:15px 35px;
+      border:none;
+      border-radius:50px;
+      background:#D4AF37;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:16px;
+    }
+
+    .hero-btn:hover{
+      transform:scale(1.08);
+      box-shadow:0 0 20px gold;
+    }
+
+    /* BUSCADOR */
+
+    .search-container{
+      padding:40px 20px;
+      text-align:center;
+    }
+
+    .search{
+      width:60%;
+      padding:15px;
+      border:none;
+      border-radius:50px;
+      background:#1A1A1A;
+      color:white;
+      font-size:16px;
+      outline:none;
+      border:1px solid #333;
+    }
+
+    .search:focus{
+      border:1px solid #D4AF37;
+      box-shadow:0 0 10px rgba(212,175,55,0.5);
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      padding:40px;
+    }
+
+    /* CARD */
+
+    .card{
+      background:#161616;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      border:1px solid #222;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 25px rgba(212,175,55,0.4);
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+      text-align:center;
+    }
+
+    .card h3{
+      margin-bottom:10px;
+    }
+
+    .precio{
+      color:#D4AF37;
+      font-size:22px;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    /* BOTONES */
+
+    .btn-container{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+    }
+
+    button{
+      padding:12px 18px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .cart{
+      background:#D4AF37;
+      color:black;
+    }
+
+    .fav{
+      background:#ff4d6d;
+      color:white;
+    }
+
+    button:hover{
+      transform:scale(1.08);
+    }
+
+    /* FOOTER */
+
+    footer{
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+      background:#111;
+      color:#888;
+      border-top:1px solid #222;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div class="navbar">
+
+    <div class="logo">
+      💎 Joya al alcance de un clic
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Inicio</a>
+      <a href="#">Catálogo</a>
+      <a href="#">Favoritos</a>
+      <a href="#">🛒</a>
+    </div>
+
+  </div>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Elegancia que brilla contigo ✨</h1>
+
+      <p>
+        Descubre joyas únicas diseñadas para resaltar tu estilo
+      </p>
+
+      <button class="hero-btn">
+        Explorar catálogo
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- BUSCADOR -->
+
+  <div class="search-container">
+
+    <input
+      type="text"
+      class="search"
+      placeholder="Buscar joyas..."
+    >
+
+  </div>
+
+  <!-- PRODUCTOS -->
+
+  <div class="grid" id="productos"></div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 - La joya al alcance de un clic 💎
+  </footer>
+
+<script>
+
+let productos = [
+
+{nombre:"Anillo de lujo", precio:80000, img:"https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1200&auto=format&fit=crop"},
+
+{nombre:"Collar elegante", precio:95000, img:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop"},
+
+{nombre:"Pulsera moderna", precio:60000, img:"https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop"},
+
+{nombre:"Anillo diamante", precio:120000, img:"https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?q=80&w=1200&auto=format&fit=crop"},
+
+{nombre:"Collar oro rosa", precio:110000, img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop"},
+
+{nombre:"Pulsera fina", precio:70000, img:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=1200&auto=format&fit=crop"}
+
+];
+
+let html="";
+
+productos.forEach(p=>{
+
+html += `
+
+<div class="card">
+
+<img src="${p.img}">
+
+<div class="card-content">
+
+<h3>${p.nombre}</h3>
+
+<div class="precio">
+$${p.precio.toLocaleString()}
+</div>
+
+<div class="btn-container">
+
+<button class="cart"
+onclick='agregar(${JSON.stringify(p)})'>
+🛒 Comprar
+</button>
+
+<button class="fav"
+onclick='favorito(${JSON.stringify(p)})'>
+❤️
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("productos").innerHTML = html;
+
+/* CARRITO */
+
+function agregar(p){
+
+let cart = JSON.parse(localStorage.getItem("carrito")) || [];
+
+cart.push(p);
+
+localStorage.setItem("carrito", JSON.stringify(cart));
+
+alert("🛒 Producto agregado");
+
+}
+
+/* FAVORITOS */
+
+function favorito(p){
+
+let fav = JSON.parse(localStorage.getItem("fav")) || [];
+
+fav.push(p);
+
+localStorage.setItem("fav", JSON.stringify(fav));
+
+alert("❤️ Guardado en favoritos");
+
+}
+
+</script>
+
+</body>
+</html>

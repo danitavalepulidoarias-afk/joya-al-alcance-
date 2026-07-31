@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Al Alcance de un Clic - Luxury Jewelry Management</title>
+<!-- Font Imports -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "tertiary-container": "#68c3b0",
+                        "on-error": "#ffffff",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#e4e2e1",
+                        "secondary": "#5f5e5e",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "inverse-primary": "#e9c349",
+                        "tertiary": "#006b5c",
+                        "inverse-surface": "#2f3131",
+                        "inverse-on-surface": "#f0f1f1",
+                        "primary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#735c00",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#7cd7c3",
+                        "on-primary-container": "#554300",
+                        "outline": "#7f7663",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-tertiary-fixed": "#00201b",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-surface": "#1a1c1c",
+                        "surface-dim": "#dadada",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "on-surface-variant": "#4d4635",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#d0c5af",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#98f3df",
+                        "primary": "#735c00",
+                        "on-tertiary-container": "#004f44",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-fixed-variant": "#005045",
+                        "on-primary-fixed": "#241a00",
+                        "primary-container": "#d4af37",
+                        "on-secondary-container": "#656464"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-sm": ["10px", {"lineHeight": "1", "letterSpacing": "0.03em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FAFAFA;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .luxury-shadow {
+            shadow: 0px 4px 20px rgba(0,0,0,0.04);
+        }
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Custom focused input underline effect */
+        .input-focus-gold:focus-within .input-line {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen items-center justify-center p-margin-mobile md:p-0">
+<!-- Login Container -->
+<main class="w-full max-w-[440px] flex flex-col items-center">
+<!-- Logo Section -->
+<div class="mb-12 animate-fade-in text-center">
+<img alt="Al Alcance de un Clic Logo" class="h-32 w-auto object-contain mx-auto transition-transform hover:scale-105 duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLvPLg2zX82wTQ8qZh0RV_Ewpcl7u5shvl7LoA4LGGMlULAJRNOL-YcDiFnMigpL2ZRrILSEnp8jiSmlaaB6Z3UxpAqFV8pfC8GqH4CgTpJcFmn8ui1qzks1OibgQQ-cH5iTCDaSA5UigdxXQMDDOAUH894kbZd3ebGshsUWOUUQMCAQfSzk6mIHY-vriEEBVltTTw4mpIdIw6UPHu9XpXuyFyy8-QfXZDq3U7l1bPpr5J1IzGiQeaBZw-3p"/>
+<div class="mt-4 opacity-60">
+<span class="font-label-md text-label-md tracking-[0.2em] text-secondary uppercase">Luxury Jewelry Management</span>
+</div>
+</div>
+<!-- Welcome Message -->
+<div class="mb-10 text-center">
+<h1 class="font-headline-md text-headline-md text-on-background mb-2">Bienvenido de nuevo</h1>
+<p class="font-body-md text-body-md text-secondary">Ingrese sus credenciales para continuar</p>
+</div>
+<!-- Form Section -->
+<form class="w-full space-y-6" onsubmit="return false;">
+<!-- Email Input -->
+<div class="group relative flex flex-col">
+<label class="font-label-md text-label-md text-on-surface-variant mb-2 ml-1" for="email">Email / Usuario</label>
+<div class="relative bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-soft hover:shadow-md border border-transparent group-focus-within:border-primary-container/30">
+<div class="flex items-center px-4">
+<span class="material-symbols-outlined text-secondary mr-3 text-[20px]">mail</span>
+<input class="w-full py-4 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-outline-variant/60" id="email" placeholder="nombre@boutique.com" type="email"/>
+</div>
+</div>
+</div>
+<!-- Password Input -->
+<div class="group relative flex flex-col">
+<div class="flex justify-between items-end mb-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1" for="password">Contraseña</label>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">¿Olvidaste tu contraseña?</a>
+</div>
+<div class="relative bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)] transition-soft hover:shadow-md border border-transparent group-focus-within:border-primary-container/30">
+<div class="flex items-center px-4">
+<span class="material-symbols-outlined text-secondary mr-3 text-[20px]">lock</span>
+<input class="w-full py-4 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder:text-outline-variant/60" id="password" placeholder="••••••••" type="password"/>
+<button class="material-symbols-outlined text-outline-variant hover:text-secondary" type="button">visibility_off</button>
+</div>
+</div>
+</div>
+<!-- Login Button -->
+<button class="w-full bg-primary-container text-on-secondary py-5 rounded-xl font-body-md text-body-md font-semibold shadow-lg shadow-primary-container/20 transition-all duration-300 hover:bg-[#C2A032] hover:-translate-y-0.5 active:scale-95">
+                Iniciar Sesión
+            </button>
+</form>
+<!-- Divider -->
+<div class="w-full flex items-center my-10 gap-4">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="font-label-md text-label-md text-outline-variant">O accede vía</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<!-- Biometric Options -->
+<div class="flex justify-center gap-6">
+<button class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex items-center justify-center transition-all duration-300 group-hover:shadow-md group-hover:border-primary-container/20 border border-transparent">
+<span class="material-symbols-outlined text-primary text-[32px]">drafts</span>
+</div>
+<span class="mt-3 font-label-sm text-label-sm text-secondary group-hover:text-primary">FaceID</span>
+</button>
+<button class="flex flex-col items-center group">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex items-center justify-center transition-all duration-300 group-hover:shadow-md group-hover:border-primary-container/20 border border-transparent">
+<span class="material-symbols-outlined text-primary text-[32px]">fingerprint</span>
+</div>
+<span class="mt-3 font-label-sm text-label-sm text-secondary group-hover:text-primary">TouchID</span>
+</button>
+</div>
+<!-- Footer Note -->
+<footer class="mt-16 text-center">
+<p class="font-label-sm text-label-sm text-outline-variant tracking-wider">EST. 2024 • PREMIUM ACCESS ONLY</p>
+</footer>
+</main>
+<!-- Subtle Background Decoration -->
+<div class="fixed top-0 right-0 w-1/3 h-full pointer-events-none opacity-[0.03] overflow-hidden hidden lg:block">
+<span class="material-symbols-outlined text-[600px] -mr-48 mt-12 text-primary" style="font-variation-settings: 'wght' 100;">diamond</span>
+</div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('.relative').style.boxShadow = '0px 12px 30px rgba(212, 175, 55, 0.1)';
+            });
+            input.addEventListener('blur', () => {
+                input.closest('.relative').style.boxShadow = '0px 4px 20px rgba(0,0,0,0.04)';
+            });
+        });
+
+        // Toggle Password Visibility
+        const togglePass = document.querySelector('button.material-symbols-outlined');
+        const passInput = document.getElementById('password');
+        togglePass.addEventListener('click', () => {
+            const isPass = passInput.getAttribute('type') === 'password';
+            passInput.setAttribute('type', isPass ? 'text' : 'password');
+            togglePass.textContent = isPass ? 'visibility' : 'visibility_off';
+            togglePass.classList.toggle('text-primary');
+        });
+    </script>
+</body></html>

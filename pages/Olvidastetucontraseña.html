@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF_8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar contraseña  | Joya al alcance de un clic</title>
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+body{
+
+    background:#0B0B0B;
+    color:white;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+/* NAVBAR */
+
+.navbar{
+
+    position:absolute;
+    top:0;
+    width:100%;
+
+    background:black;
+
+    padding:20px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:1px solid gold;
+
+}
+
+
+.logo{
+
+    color:gold;
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+
+.navbar a{
+
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+
+}
+
+
+.navbar a:hover{
+
+    color:gold;
+
+}
+
+
+
+/* TARJETA */
+
+
+.container{
+
+
+    width:400px;
+
+    background:#151515;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    border:1px solid gold;
+
+    box-shadow:
+    0 0 25px rgba(212,175,55,0.4);
+
+}
+
+
+
+/* ICONO */
+
+
+.icono{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+/* TITULO */
+
+
+h1{
+
+    color:gold;
+
+    margin-bottom:15px;
+
+}
+
+
+p{
+
+    color:#ccc;
+
+    line-height:1.5;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* INPUT */
+
+
+label{
+
+    display:block;
+
+    text-align:left;
+
+    margin-top:15px;
+
+    color:gold;
+
+}
+
+
+
+input{
+
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:8px;
+
+    border-radius:10px;
+
+    border:none;
+
+    background:#222;
+
+    color:white;
+
+    outline:none;
+
+}
+
+
+
+input:focus{
+
+    border:1px solid gold;
+
+}
+
+
+
+/* BOTON */
+
+
+button{
+
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:25px;
+
+    background:gold;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+
+}
+
+
+button:hover{
+
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 20px gold;
+
+
+}
+
+
+
+/* MENSAJE */
+
+
+.mensaje{
+
+
+    display:none;
+
+    margin-top:20px;
+
+    color:#7CFF7C;
+
+    background:#111;
+
+    padding:10px;
+
+    border-radius:10px;
+
+
+}
+
+
+
+/* LINK */
+
+
+.volver{
+
+
+    display:block;
+
+    margin-top:25px;
+
+    color:gold;
+
+    text-decoration:none;
+
+
+}
+
+
+.volver:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- NAVBAR -->
+
+
+<header class="navbar">
+
+
+<div class="logo">
+
+💎 Joya al alcance de un clic
+
+</div>
+
+
+<nav>
+
+<a href="inicio.html">
+Inicio
+</a>
+
+
+<a href="login.html">
+Login
+</a>
+
+
+</nav>
+
+
+</header>
+
+
+
+
+<!-- CONTENIDO -->
+
+
+<div class="container">
+
+
+
+<div class="icono">
+
+🔐
+
+</div>
+
+
+
+<h1>
+
+¿Olvidaste tu contraseña?
+
+</h1>
+
+
+
+<p>
+
+No te preocupes. Escribe tu correo electrónico y te ayudaremos a recuperar tu cuenta.
+
+</p>
+
+
+
+
+<form onsubmit="recuperar(event)">
+
+
+
+<label>
+
+Correo electrónico
+
+</label>
+
+
+
+<input 
+type="email"
+id="correo"
+placeholder="ejemplo@gmail.com"
+required>
+
+
+
+<button>
+
+Enviar enlace
+
+</button>
+
+
+
+</form>
+
+
+
+<div 
+class="mensaje"
+id="mensaje">
+
+✔ Hemos enviado instrucciones a tu correo
+
+</div>
+
+
+
+<a 
+class="volver"
+href="login.html">
+
+← Volver al inicio de sesión
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function recuperar(event){
+
+
+event.preventDefault();
+
+
+
+let correo =
+document.getElementById("correo").value;
+
+
+
+document.getElementById("mensaje")
+.style.display="block";
+
+
+
+console.log(
+"Solicitud enviada:",
+correo
+);
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

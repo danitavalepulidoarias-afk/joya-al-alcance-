@@ -1,0 +1,222 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Administrador - Joya al alcance de un clic</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style/administrador.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- MENU LATERAL -->
+        <div class="sidebar">
+
+            <h2 class="logo">
+                💎 Joya
+            </h2>
+
+            <ul>
+
+                <li onclick="mostrar('usuarios')">
+                    👥 Gestionar usuarios
+                </li>
+
+                <li onclick="mostrar('publicar')">
+                    💍 Publicar joyas
+                </li>
+
+                <li onclick="mostrar('productos')">
+                    ✏️ Editar productos
+                </li>
+
+                <li onclick="mostrar('pedidos')">
+                    📦 Revisar pedidos
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PANEL PRINCIPAL -->
+        <div class="main">
+
+            <h1>
+                Panel Administrador
+            </h1>
+
+
+            <!-- TARJETAS -->
+            <div class="cards">
+
+                <div class="card">
+                    <h2>120</h2>
+                    <p>Usuarios</p>
+                </div>
+
+                <div class="card">
+                    <h2>45</h2>
+                    <p>Joyas publicadas</p>
+                </div>
+
+                <div class="card">
+                    <h2>30</h2>
+                    <p>Pedidos</p>
+                </div>
+
+                <div class="card">
+                    <h2>$5M</h2>
+                    <p>Ventas</p>
+                </div>
+
+            </div>
+
+
+            <!-- USUARIOS -->
+            <div class="section" id="usuarios">
+
+                <h2>Gestionar usuarios</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Acción</th>
+                    </tr>
+
+                    <tr>
+                        <td>Ana</td>
+                        <td>ana@gmail.com</td>
+                        <td>Cliente</td>
+
+                        <td>
+                            <button>Editar</button>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- PUBLICAR -->
+            <div class="section" id="publicar">
+
+                <h2>Publicar nueva joya</h2>
+
+                <input
+                    type="text"
+                    placeholder="Nombre joya"
+                >
+
+                <input
+                    type="number"
+                    placeholder="Precio"
+                >
+
+                <select>
+
+                    <option>Anillo</option>
+                    <option>Collar</option>
+                    <option>Pulsera</option>
+
+                </select>
+
+                <br>
+
+                <button>
+                    Publicar producto
+                </button>
+
+            </div>
+
+
+            <!-- EDITAR PRODUCTOS -->
+            <div class="section" id="productos">
+
+                <h2>Editar productos</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Anillo oro
+                        </td>
+
+                        <td>
+                            $300.000
+                        </td>
+
+                        <td>
+                            <button>
+                                Editar
+                            </button>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- PEDIDOS -->
+            <div class="section" id="pedidos">
+
+                <h2>Revisar pedidos</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Producto</th>
+                        <th>Estado</th>
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Laura
+                        </td>
+
+                        <td>
+                            Collar personalizado
+                        </td>
+
+                        <td>
+                            En fabricación
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="../js/administrador.js"></script>
+
+</body>
+</html>

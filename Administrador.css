@@ -1,0 +1,147 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background: #f5f1ea;
+}
+
+
+/* CONTENEDOR */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* MENU LATERAL */
+
+.sidebar {
+    width: 260px;
+    background: #1b1b1b;
+    color: white;
+    padding: 25px;
+}
+
+
+.logo {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #d4af37;
+}
+
+
+.sidebar ul {
+    list-style: none;
+}
+
+
+.sidebar li {
+    padding: 15px;
+    margin: 10px 0;
+    background: #292929;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.sidebar li:hover {
+    background: #d4af37;
+    color: black;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+
+h1 {
+    margin-bottom: 25px;
+}
+
+
+/* TARJETAS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px #ccc;
+}
+
+
+.card h2 {
+    color: #d4af37;
+}
+
+
+/* SECCIONES */
+
+.section {
+    background: white;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+
+/* BOTONES */
+
+button {
+    background: #d4af37;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background: #b8941f;
+}
+
+
+/* TABLAS */
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+
+/* INPUTS Y SELECT */
+
+input,
+select {
+    padding: 10px;
+    margin: 8px;
+    width: 90%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}

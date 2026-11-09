@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catálogo - Joya al alcance de un clic</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="../style/catalogo.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            💎 Joya al alcance de un clic
+        </div>
+
+        <nav>
+            <a href="inicio.html">🏠 Inicio</a>
+            <a href="catalogo.html">💎 Catálogo</a>
+            <a href="crear.html">🛒 Crear pedido</a>
+            <a href="carrito.html">🛍️ Carrito</a>
+        </nav>
+    </header>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+
+        <h1>Catálogo de joyas</h1>
+
+        <p class="descripcion">
+            Encuentra la joya ideal para cada ocasión.
+        </p>
+
+
+        <!-- FILTROS -->
+        <section class="filtros">
+
+            <select id="filtroTipo">
+                <option value="todos">Todos los tipos</option>
+                <option value="anillo">Anillos</option>
+                <option value="collar">Collares</option>
+                <option value="pulsera">Pulseras</option>
+            </select>
+
+            <select id="filtroMaterial">
+                <option value="todos">Todos los materiales</option>
+                <option value="oro">Oro</option>
+                <option value="plata">Plata</option>
+                <option value="platino">Platino</option>
+            </select>
+
+            <select id="orden">
+                <option value="normal">Ordenar</option>
+                <option value="menor">Precio menor</option>
+                <option value="mayor">Precio mayor</option>
+            </select>
+
+        </section>
+
+
+        <!-- CATÁLOGO -->
+        <section class="catalogo" id="catalogo">
+
+            <!-- PRODUCTO 1 -->
+            <article class="producto" data-tipo="anillo" data-material="oro" data-precio="800000">
+
+                <button class="favorito" onclick="toggleFav(this)">
+                    ♡
+                </button>
+
+                <img src="../img/anillo.jpg" alt="Anillo de oro">
+
+                <h2>Anillo elegante</h2>
+
+                <p>Material: Oro</p>
+
+                <p class="precio">$800.000</p>
+
+                <button class="btn-carrito" onclick="addToBag('Anillo elegante')">
+                    Agregar al carrito
+                </button>
+
+            </article>
+
+
+            <!-- PRODUCTO 2 -->
+            <article class="producto" data-tipo="collar" data-material="plata" data-precio="500000">
+
+                <button class="favorito" onclick="toggleFav(this)">
+                    ♡
+                </button>
+
+                <img src="../img/collar.jpg" alt="Collar de plata">
+
+                <h2>Collar clásico</h2>
+
+                <p>Material: Plata</p>
+
+                <p class="precio">$500.000</p>
+
+                <button class="btn-carrito" onclick="addToBag('Collar clásico')">
+                    Agregar al carrito
+                </button>
+
+            </article>
+
+
+            <!-- PRODUCTO 3 -->
+            <article class="producto" data-tipo="pulsera" data-material="oro" data-precio="650000">
+
+                <button class="favorito" onclick="toggleFav(this)">
+                    ♡
+                </button>
+
+                <img src="../img/pulsera.jpg" alt="Pulsera de oro">
+
+                <h2>Pulsera dorada</h2>
+
+                <p>Material: Oro</p>
+
+                <p class="precio">$650.000</p>
+
+                <button class="btn-carrito" onclick="addToBag('Pulsera dorada')">
+                    Agregar al carrito
+                </button>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/catalogo.js"></script>
+
+</body>
+
+</html>
+
